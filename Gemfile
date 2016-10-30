@@ -7,6 +7,9 @@ gem 'rails', '5.0.0.1'
 gem 'bootstrap-sass'
 gem 'sqlite3'
 gem 'slim-rails'
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'devise'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
