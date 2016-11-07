@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   get 'signup', to: 'users#new'
-  resources :users
+  resources :users, except:[:show]
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  get '/users/:accesstoken', to: 'users#show',as: 'show_user'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

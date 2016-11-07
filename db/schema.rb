@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(version: 20161030041549) do
     t.string   "phone_number"
     t.integer  "reserves_count"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "access_token",    limit: 6, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["access_token"], name: "index_users_on_access_token", unique: true
   end
 
 end

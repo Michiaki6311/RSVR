@@ -14,12 +14,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.where(params[:access_token]).first
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name,:email,:phone_number,:reserves_count,:password,:password_confirmation)
+    params.require(:user).permit(:name,:email,:phone_number,:reserves_count,:password,:password_confirmation,:access_token)
   end
 end
