@@ -7,8 +7,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Success"
-      redirect_to @user
+      session[:user_id] = @user.id
+
+      redirect_to account_user_url
     else
+      flash.now[:danger] = 'invalid account information'
       render 'new'
     end
   end
