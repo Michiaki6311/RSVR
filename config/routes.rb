@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  get '/users/:accesstoken', to: 'users#show',as: 'show_user'
+  get '/users/account', to: 'users#account'
+  get '/users/:accesstoken', to: 'users#show', as: 'show_user'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def account
+    @user = User.find(session[:user_id])
+  end
+
   def show
     @user = User.where(params[:access_token]).first
   end
