@@ -6,12 +6,6 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-    javascript:
-      $(function(){
-        setTimeout(function(){
-          $('div.script').fadeOut("slow");
-        },800);
-      });
   body
     == render 'layouts/header'
 

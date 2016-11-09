@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+
+javascript:
+$(function(){
+  setTimeout(function(){
+    $('div.script').fadeOut("slow");
+  },800);
+});
