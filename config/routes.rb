@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :users, except:[:show]
   get 'signup', to: 'users#new'
   get 'users/account', to: 'users#account', as: :account_user
-  get 'users/:accesstoken', to: 'users#show', as: :show_user
+  get 'users/account/edit', to: 'users#edit'
+  get 'users/:access_token', to: 'users#show', as: :show_user
 
   get 'sessions/new'
   get 'login', to: 'sessions#new'
