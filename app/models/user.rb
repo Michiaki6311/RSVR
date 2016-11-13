@@ -11,6 +11,16 @@ class User < ApplicationRecord
   validates :phone_number, presence: true, length: { maximum: 16 },
     uniqueness: true
   has_secure_password
+
+  # Class methods
+  class << self
+    def digest(string)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+        BCrypt::Engine.cost
+      BCrypt::Password.create(string, cost: cost)
+    end
+  end
+
   private
   def set_access_token
     self.access_token = self.access_token.blank? ? generate_access_token : self.access_token
