@@ -177,6 +177,17 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-doc (0.9.0)
+      pry (~> 0.9)
+      yard (~> 0.8)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -269,6 +280,7 @@ GEM
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    yard (0.9.5)
 
 PLATFORMS
   ruby
@@ -287,6 +299,10 @@ DEPENDENCIES
   jquery-rails
   mini_backtrace
   minitest-reporters
+  pry-byebug
+  pry-doc
+  pry-rails
+  pry-stack_explorer
   rails (= 5.0.0.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

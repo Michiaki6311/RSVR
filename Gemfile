@@ -44,6 +44,13 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Use pry tools
+  # http://ruby-rails.hatenadiary.com/entry/20141024/1414081224
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
 end
 
 group :development do
