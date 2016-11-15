@@ -4,11 +4,6 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :users, except:[:show]
-  get 'users/account', to: 'users#account', as: :account_user
-  get 'users/account/edit', to: 'users#edit'
-
-
   root to: 'static_pages#home'
   get '/help', to: 'static_pages#help'
 
