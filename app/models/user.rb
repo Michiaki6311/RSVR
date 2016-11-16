@@ -16,4 +16,8 @@ class User < ApplicationRecord
     self.email = self.email.downcase
   end
 
+  def password_required?
+    super if confirmed?
+  end
+
 end
