@@ -4,6 +4,14 @@ h2
   = f.hidden_field :confirmation_token
   = devise_error_messages!
   .field
+    = f.label :name
+    br
+    = f.text_field :name
+
+    = f.label :phone_number
+    br
+    = f.text_field :phone_number
+
     = f.label :password
     - if @minimum_password_length
       em
@@ -12,6 +20,15 @@ h2
         |  characters minimum)
     br
     = f.password_field :password, autocomplete: "off"
+
+    = f.label :password_confirmation,"Confirmation"
+    - if @minimum_password_length
+      em
+        | (
+        = @minimum_password_length
+        |  characters minimum)
+    br
+    = f.password_field :password_confirmation, autocomplete: "off"
   .actions
     = f.submit "Submit"
 = render "users/shared/links"
