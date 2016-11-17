@@ -1,0 +1,17 @@
+h2
+  | Enter new password
+= form_for(resource, as: resource_name, url: confirmation_path(resource_name)) do |f|
+  = f.hidden_field :confirmation_token
+  = devise_error_messages!
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      em
+        | (
+        = @minimum_password_length
+        |  characters minimum)
+    br
+    = f.password_field :password, autocomplete: "off"
+  .actions
+    = f.submit "Submit"
+= render "users/shared/links"
