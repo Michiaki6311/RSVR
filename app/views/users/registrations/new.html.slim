@@ -5,7 +5,7 @@ h2
   .field
     = f.label :email
     br
-    = f.email_field :email, autofocus: true
+    = f.email_field :email, autofocus: true, class: 'form-control' ,placeholder: 'Eメールアドレスを入力してください。'
   .actions
     = f.submit "Sign up"
 = render "users/shared/links"
