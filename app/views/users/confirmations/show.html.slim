@@ -6,11 +6,11 @@ h2
   .field
     = f.label :name
     br
-    = f.text_field :name, class: 'form-control' , placeholder: '予約の際に使用するお名前を入力してください。'
+    = f.text_field :name, class: 'form-control' , placeholder: '団体名、個人名 等'
 
     = f.label :phone_number
     br
-    = f.text_field :phone_number, class: 'form-control', placeholder: '半角数字のみ、ハイフンありで入力してください。'
+    = f.text_field :phone_number, class: 'form-control', placeholder: '090-1234-5678'
 
     = f.label :password
     - if @minimum_password_length
