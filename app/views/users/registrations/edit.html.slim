@@ -29,7 +29,7 @@ h2
     i
       | (leave blank if you don't want to change it)
     br
-    = f.password_field :password, autocomplete: "off"
+    = f.password_field :password, autocomplete: "off", class: 'form-control'
     - if @minimum_password_length
       br
       em
@@ -38,13 +38,13 @@ h2
   .field
     = f.label :password_confirmation
     br
-    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
   .field
     = f.label :current_password
     i
       | (we need your current password to confirm your changes)
     br
-    = f.password_field :current_password, autocomplete: "off"
+    = f.password_field :current_password, autocomplete: "off", class: 'form-control'
   .actions
     = f.submit "Update"
 h3
