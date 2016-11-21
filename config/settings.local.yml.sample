@@ -1,4 +1,7 @@
+smtp:
+  address: "localhost"
+  port: 1025
+# gmail is ignored if smtp is setted
 gmail:
   user_name: 'rsvr.for.you@gmail.com'
   password: 'rsvrpassword'
-
