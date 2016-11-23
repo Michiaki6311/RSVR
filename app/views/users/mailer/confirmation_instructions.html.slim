@@ -3,6 +3,12 @@ p
   = @email
   | !
 p
-  | You can confirm your account email through the link below:
+  | 登録のご依頼ありがとうございます。
+p
+  | まだ、ご登録は完了しておりませんので、下記のリンク先であなたのアカウント情報を登録してください。
+p
+  | ここまで終了したら、本登録は完了です。
+p
+  | 本登録完了後、RSVRの機能を利用することができます。
 p
   = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
