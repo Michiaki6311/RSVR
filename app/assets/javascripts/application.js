@@ -21,5 +21,5 @@ javascript:
 $(function(){
   setTimeout(function(){
     $('div.script').fadeOut("slow");
-  },800);
+  },2000);
 });

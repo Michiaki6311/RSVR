@@ -17,4 +17,7 @@ Rails.application.routes.draw do
     patch "users/confirmation", to: "users/confirmations#confirm"
   end
 
+  resources :facilities
+  resources :reservations
+
 end

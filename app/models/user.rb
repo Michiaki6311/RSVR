@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :reservations
+  has_many :facilities, through: :reserves
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :confirmable, :database_authenticatable, :registerable,
