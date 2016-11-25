@@ -19,7 +19,7 @@
 javascript:
 $(function(){
   setTimeout(function(){
-    $('div.script').fadeOut("slow");
-  },2000);
+    $('.container > .alert-info').fadeOut("slow");
+  }, 2000);
 });
 
