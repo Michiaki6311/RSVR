@@ -1,8 +1,9 @@
 -if user_signed_in?
   h2 現在のあなたの予約状況
+  == render 'reservations/shared/show'
 
   h2 現在の本店の予約状況
-
+  == render 'reservations/shared/form'
 -else
   h1 ようこそRSVRへ!
   h2 現在の本店の予約状況

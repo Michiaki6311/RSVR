@@ -16,10 +16,10 @@
 //= require_tree .
 
 
-
 javascript:
 $(function(){
   setTimeout(function(){
     $('div.script').fadeOut("slow");
   },2000);
 });
+

@@ -1,0 +1,11 @@
+= form_for(@reservation) do |f|
+  .field
+    = f.label '開始時間'
+    br
+    = f.datetime_select :strat_time, {}, class: 'form-control'
+  .field
+    = f.label '終了時間'
+    br
+    = f.datetime_select :end_time, {}, class: 'form-control'
+  .actions
+    =f.submit "予約"
