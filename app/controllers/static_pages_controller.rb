@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     @reservation = current_user.reservations.build if user_signed_in?
-    @reservations = current_user.reservations.order(created_at: :desc)
+    @my_reservations = current_user.reservations if user_signed_in?
   end
 
   def help

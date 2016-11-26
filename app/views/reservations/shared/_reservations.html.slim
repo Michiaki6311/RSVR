@@ -1,0 +1,18 @@
+table.table.table-hover.table-bordered
+  thead
+    tr
+      th No.
+      th スタジオ
+      th 開始時間
+      th 終了時間
+      th 利用時間
+      th 取り消し
+  tbody
+   -@my_reservations.each do |r|
+    tr
+      td=
+      td=
+      td= r.strat_time
+      td= r.end_time
+      td=
+      td= link_to "取り消し"

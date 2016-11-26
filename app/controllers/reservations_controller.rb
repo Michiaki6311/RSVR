@@ -5,11 +5,14 @@ class ReservationsController < ApplicationController
   def create
     @reservation = current_user.reservations.build(reservation_params)
     if @reservation.save
-      flash[:success] = "Reserve finished!"
+      flash[:notice] = "Reserve finished!"
       redirect_to root_path
     else
       render root_path
     end
+  end
+
+  def destroy
   end
 
   private
