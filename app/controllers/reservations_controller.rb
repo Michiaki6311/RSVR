@@ -13,6 +13,10 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @reservation = current_user.reservations.find_by(id: params[:id])
+    @reservation.destroy
+    flash[:notice] = "Reservation deleted!"
+    redirect_to root_path
   end
 
   private

@@ -1,6 +1,7 @@
 -if user_signed_in?
   h2 現在のあなたの予約状況
-  == render 'reservations/shared/reservations'
+  -@my_reservations.each do |reservation|
+    == render partial:  'reservations/shared/reservations',locals:{reservation: reservation}
 
   h2 現在の本店の予約状況
   == render 'reservations/shared/form'
