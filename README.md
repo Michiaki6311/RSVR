@@ -7,7 +7,7 @@ Run
 ===
 
 1. Clone this repository and `cd` in.
-2. `bundle init`
+2. `bundle install`
 3. `rails db:setup`
 4. Write config/settings.local.yml from settings.local.yml.sample
 5. `rails server`
