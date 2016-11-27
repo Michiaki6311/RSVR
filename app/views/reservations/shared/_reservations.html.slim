@@ -16,5 +16,5 @@
         td=
         td= reservation.strat_time
         td= reservation.end_time
-        td=
+        td= (reservation.end_time-reservation.strat_time)
         td= link_to "取り消し",reservation,method: :delete

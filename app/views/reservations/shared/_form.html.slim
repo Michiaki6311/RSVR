@@ -2,10 +2,10 @@
   .field
     = f.label '開始時間'
     br
-    = f.datetime_select :strat_time,minute_step: 30,start_year: Time.now.year
+    = f.datetime_select :strat_time,{minute_step: 30,start_year: Time.now.year},{class: 'form-control bootstrap-date'}
   .field
     = f.label '終了時間'
     br
-    = f.datetime_select :end_time,minute_step: 30,start_year: Time.now.year
+    = f.datetime_select :end_time,{minute_step: 30,start_year: Time.now.year},{class: 'form-control bootstrap-date'}
   .actions
-    =f.submit "予約"
+    =f.submit "予約",class: 'bootstrap-date'
