@@ -5,17 +5,18 @@ class ReservationsController < ApplicationController
   def create
     @reservation = current_user.reservations.build(reservation_params)
     if @reservation.save
-      flash[:notice] = "Reserve finished!"
+      flash[:notice] = "予約を完了しました。"
       redirect_to root_path
     else
-      render root_path
+      flash[:alert] = "日付を正しく入力してください。"
+      redirect_to root_path
     end
   end
 
   def destroy
     @reservation = current_user.reservations.find_by(id: params[:id])
     @reservation.destroy
-    flash[:notice] = "Reservation deleted!"
+    flash[:notice] = "予約を取り消しました。"
     redirect_to root_path
   end
 
