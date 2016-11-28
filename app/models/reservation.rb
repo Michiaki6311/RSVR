@@ -1,5 +1,6 @@
 class Reservation < ApplicationRecord
-  belongs_to :users
+  belongs_to :user
+  belongs_to :facility
 
   validates :strat_time,
     presence: true
@@ -21,4 +22,5 @@ class Reservation < ApplicationRecord
     errors.add(:end,"の日付を正しく記入してください。") unless
     (self.strat_time - DateTime.now).to_i > 0
   end
+
 end

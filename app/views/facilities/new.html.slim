@@ -1,0 +1,8 @@
+h2 施設登録
+=form_for(@facility) do |f|
+   .field
+     = f.label '施設名'
+     br
+     = f.text_field :name
+   .actions
+     = f.submit "登録"

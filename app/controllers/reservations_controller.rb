@@ -22,6 +22,6 @@ class ReservationsController < ApplicationController
 
   private
   def reservation_params
-    params.require(:reservation).permit(:strat_time,:end_time)
+    params.require(:reservation).permit(:strat_time,:end_time,:facility_id)
   end
 end
