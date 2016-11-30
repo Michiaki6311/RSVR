@@ -4,6 +4,9 @@
     == render partial:  'reservations/shared/reservations',locals:{reservation: reservation}
 
   h2 現在の本店の予約状況
+  == render 'reservations/shared/show'
+  br
+  h2 予約フォーム
   == render 'reservations/shared/form'
 -else
   h1 ようこそRSVRへ!

@@ -2,11 +2,6 @@ class ReservationsController < ApplicationController
   def index
   end
 
-  def show
-    @facilities = Facility.all
-    @reservations = Reservation.order(:facility_id).order(:strat_time)
-  end
-
   def create
     @reservation = current_user.reservations.build(reservation_params)
     if @reservation.save

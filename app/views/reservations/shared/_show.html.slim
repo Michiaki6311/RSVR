@@ -1,10 +1,8 @@
-h2 予約一覧
 -@facilities.each do |f|
   h3= f.name
   table.table.table-hover.table-bordered
      thead
        tr
-         th スタジオ
          th 開始時間
          th 終了時間
          th 利用時間
@@ -13,7 +11,6 @@ h2 予約一覧
      -@show_reservations.each do |reservation|
        -if reservation.facility.id==f.id
          tr
-           td= reservation.facility.name
            td= reservation.strat_time.to_s(:datetime)
            td= reservation.end_time.to_s(:datetime)
            -second= (reservation.end_time-reservation.strat_time)
