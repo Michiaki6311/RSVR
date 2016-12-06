@@ -1,4 +1,4 @@
--if reservation.id.nil?
+-if reservation.id.nil? ||reservation.end_time < DateTime.now
   br
 -else
   table.table.table-hover.table-bordered
@@ -15,5 +15,6 @@
         td= reservation.end_time.to_s(:datetime)
         -second= (reservation.end_time-reservation.strat_time)
         td= Time.at(second).utc.to_s(:second_to_hour)
-        td= reservation.facility.name
+        -if reservation.facility.present?
+          td= reservation.facility.name
         td= link_to "取り消し",reservation,method: :delete,data:{confirm: "予約を削除しますか?"}

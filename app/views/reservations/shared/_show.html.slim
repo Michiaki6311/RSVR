@@ -8,11 +8,16 @@
          th 利用時間
          th 利用者名
      tbody
-     -@show_reservations.each do |reservation|
-       -if reservation.facility.id==f.id
+       -count = 0
+       -@show_reservations.each do |reservation|
+         -if reservation.facility.id==f.id && reservation.end_time >= DateTime.now
+           -count += 1
+           tr
+             td= reservation.strat_time.to_s(:datetime)
+             td= reservation.end_time.to_s(:datetime)
+             -second= (reservation.end_time-reservation.strat_time)
+             td= Time.at(second).utc.to_s(:second_to_hour)
+             td= reservation.user.name
+       -if count < 1
          tr
-           td= reservation.strat_time.to_s(:datetime)
-           td= reservation.end_time.to_s(:datetime)
-           -second= (reservation.end_time-reservation.strat_time)
-           td= Time.at(second).utc.to_s(:second_to_hour)
-           td= reservation.user.name
+           td colspan="4" align="center" 予約はありません

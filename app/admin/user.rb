@@ -14,4 +14,5 @@ ActiveAdmin.register User do
 # end
 
 
+  permit_params :name,:email,:phone_number
 end
