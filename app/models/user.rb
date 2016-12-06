@@ -15,18 +15,21 @@ class User < ApplicationRecord
 
   validates :name,
     presence: true,
+    uniqueness: true,
     on: :update
 
   validates :phone_number,
     presence: true,
     format: { with: VALID_PHONE_REGEX },
+    uniqueness: true,
     on: :update
 
   validates :password,
     presence: true,
     length: { minimum: 6 },
     on: :update
-  validates_confirmation_of :password
+  validates_confirmation_of :password,
+    on: :update
 
 
   before_save do

@@ -2,14 +2,14 @@
   .field
     = f.label '開始時間'
     br
-    = f.datetime_select :strat_time,{minute_step: 30,start_year: Time.now.year},{class: 'form-control bootstrap-date'}
+    = f.datetime_select :strat_time,{minute_step: 30,start_year: Time.now.year,use_month_numbers: true,date_separator:"/"},{class: 'form-control bootstrap-date'}
   .field
     = f.label '終了時間'
     br
-    = f.datetime_select :end_time,{minute_step: 30,start_year: Time.now.year},{class: 'form-control bootstrap-date'}
+    = f.datetime_select :end_time,{minute_step: 30,start_year: Time.now.year,use_month_numbers: true,date_separator:"/"},{class: 'form-control bootstrap-date'}
   .field
     = f.label 'スタジオ'
     br
     = f.collection_select :facility_id,Facility.all,:id,:name,{},{class: 'form-control bootstrap-date'}
   .actions
-    =f.submit "予約",class: 'bootstrap-date',data:{confirm: "予約しますか?"}
+    =f.submit "予約",class: 'bootstrap-date',data:{confirm: "予約しますか?",disable_with: "処理中..."}

@@ -8,4 +8,8 @@ class StaticPagesController < ApplicationController
 
   def help
   end
-end
+
+  def show
+  end
+
+  end

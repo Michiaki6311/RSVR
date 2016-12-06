@@ -1,1 +1,5 @@
 h1 Facilities List
+-@facilities.each do |f|
+  ul
+    li= f.name
+    li= link_to "delete",f,method: :delete
