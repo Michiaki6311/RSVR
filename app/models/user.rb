@@ -25,11 +25,10 @@ class User < ApplicationRecord
     on: :update
 
   validates :password,
-    presence: true,
+    presence: true,unless: "password.nil?",
     length: { minimum: 6 },
     on: :update
-  validates_confirmation_of :password,
-    on: :update
+  validates_confirmation_of :password
 
 
   before_save do
