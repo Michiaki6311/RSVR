@@ -1,3 +1,11 @@
 h1
  =gravatar_for @user
  =@user.name
+
+h2 現在のあなたの予約状況
+== render 'reservations/shared/reservations'
+br
+
+h2 あなたの予約履歴
+== render 'reservations/shared/history'
+br
