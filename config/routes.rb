@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
-    confirmations: "users/confirmations"
+    confirmations: "users/confirmations",
+    passwords: "users/passwords",
+    sessions: "users/sessions"
   }
   get '/users/account', to: 'users#account'
 
@@ -18,6 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :facilities,:except => [:update,:edit]
-  resources :reservations,:only => [:destroy,:index]
+  resources :reservations,:except => [:update,:edit]
 
 end
