@@ -23,6 +23,11 @@ textarea {
   margin-bottom: 10px;
 }
 
+.narrow {
+  max-width: 730px;
+  margin: 0 auto;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -109,7 +114,6 @@ $gray-medium-light: #eaeaea;
 
 input, textarea, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
