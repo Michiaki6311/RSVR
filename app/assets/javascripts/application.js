@@ -13,13 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require components
 //= require_tree .
+//= require jquery-ui/draggable
+//= require jquery-ui/selectable
+//= require jquery-ui/sortable
+//= require components
 
-
-javascript:
 $(function(){
   setTimeout(function(){
     $('.container > .alert-info').fadeOut("slow");
   }, 2000);
 });
-

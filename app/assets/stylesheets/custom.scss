@@ -128,3 +128,44 @@ input {
   margin-bottom: 15px;
 }
 
+/* tables */
+.ui-selectee{
+  background-color: #fff;
+}
+
+.ui-selected{
+  background-color: #f7f;
+}
+
+.ui-selecting{
+  background-color: #f7f;
+}
+
+/* calendar */
+.sun{
+  color: #f00;
+}
+
+.sat{
+  color: #00f;
+}
+
+.today{
+  color: #fff;
+  background-color: #FF773E;
+}
+
+.calendarHd{
+  background-color: #cccccc;
+}
+
+.active-date,.prev,.next{
+  background-color: #808080;
+}
+
+table tbody td.tdlink:hover {
+  color: #000;
+  background-color: #0ff;
+}
+
+
