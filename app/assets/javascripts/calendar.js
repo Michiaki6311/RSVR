@@ -76,10 +76,10 @@ function setCalendar(yy, mm) {
   for (var i in youbi) {
     if (i==0){
       out += "<td class='sun'>"+youbi[i]+"</td>";
-  }else if (i==6){
-    out += "<td class='sat'>"+youbi[i]+"</td>";
-  }else
-    out += "<td>"+youbi[i]+"</td>";
+    }else if (i==6){
+      out += "<td class='sat'>"+youbi[i]+"</td>";
+    }else
+      out += "<td>"+youbi[i]+"</td>";
   }
 
   // ここからさきほど作った配列daysの中身を展開していく
@@ -96,14 +96,14 @@ function setCalendar(yy, mm) {
     // 土日と今日の日付にはクラスを付け、cssで色をつける
     for (var j=7*i-6; j<=7*i; j++) {
       if(days[j-1] == today && mm == nowMonth && yy == nowYear){
-      out += "<td class='tdlink today' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
+        out += "<td class='tdlink today' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
       }else if((j-1)%7==0){
-      out += "<td class='tdlink sun' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
+        out += "<td class='tdlink sun' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
       }else if(j%7==0){
-      out += "<td class='tdlink sat' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
+        out += "<td class='tdlink sat' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
       }else
-      // あとでいろいろいじれるように属性やイベントを混ぜておく
-      out += "<td class='tdlink' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
+        // あとでいろいろいじれるように属性やイベントを混ぜておく
+        out += "<td class='tdlink' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
     }
     out += "</tr>";
   }
@@ -165,4 +165,51 @@ function show(e) {
   }
   // とりあえず叫ぶ
   alert(yy+'/'+mm+'/'+dd);
+
+  // スケジューラー
+  function setScheduler(yy,mm,dd){
+    // タイムスケジュールのヘッダー設定
+    var time = [];
+    var dat = new Date(1970,0,1,7,0);
+    for (i=0; i<16; i++){
+      dat.setHours(dat.getHours()+1);
+      time[i] = dat.toLocaleTimeString();
+    }
+
+    // DOM生成
+    var scj = "<table class='table table-bordered'>";
+
+    scj += "<caption>";
+    scj += yy+'年'+mm+'月'+dd+'日';
+    scj += "</caption>";
+
+    scj += "<tr class'scheduleHd'>";
+    for (var i in time){
+      scj += "<td>"+time[i]+"</td>";
+    }
+
+    scj += "</tr>";
+    scj += "<tr>";
+    for (var i in time){
+      scj += "<td class='tdlink' yy='"+yy+"' mm='"+mm+"' dd='"+dd+"' hh='"+time[i]+"' onclick='scjshow(this);return false;'></td>";
+    }
+    scj += "</tr>";
+    scj += "</table>";
+
+    document.getElementById("scheduler").innerHTML = scj;
+
+
+  }
+
+  setScheduler(yy,mm,dd);
+
+}
+
+function scjshow(e){
+  var yy = e.getAttribute('yy');
+  var mm = e.getAttribute('mm');
+  var dd = e.getAttribute('dd');
+  var hh = e.getAttribute('hh');
+
+  alert(yy+'/'+mm+'/'+dd+'/'+hh);
 }
