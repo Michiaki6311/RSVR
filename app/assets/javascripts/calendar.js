@@ -95,9 +95,7 @@ function setCalendar(yy, mm) {
     // うまく説明できないが行の変動に対応できるように何とかして回す
     // 土日と今日の日付にはクラスを付け、cssで色をつける
     for (var j=7*i-6; j<=7*i; j++) {
-      if(days[j-1] == today && mm == nowMonth && yy == nowYear){
-        out += "<td class='tdlink today' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
-      }else if((j-1)%7==0){
+      if((j-1)%7==0){
         out += "<td class='tdlink sun' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
       }else if(j%7==0){
         out += "<td class='tdlink sat' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
