@@ -1,6 +1,14 @@
-window.onload = function() {
+//addEventListnerでイベント登録
+//ページ読み込みと同時にイベント発生
+//setCalendar関数を登録
+window.addEventListener('load',function(eve){
   setCalendar();
-};
+},false);
+
+//setScheduler関数を登録
+window.addEventListener('load',function(eve){
+  setScheduler();
+},false);
 
 // カレンダー生成（引数は前月や翌月移動に備えてのもの）
 function setCalendar(yy, mm) {
@@ -57,16 +65,16 @@ function setCalendar(yy, mm) {
     }
   }
 
-  // DOM生成（いよいよ描画）
+  // DOM生成
   var out = "<table class='table table-bordered'>";
 
   out += "<caption>";
   // 今月へ戻るリンク
-  out += "<a href='javascript:void(0)' onclick='setCalendar();'>今月 </a>";
+  out += "<a href='javascript:void(0)' id='nowmonth'>今月 </a>";
   // 前月へ移動リンク
-  out += "<a href='javascript:void(0)' yy='"+yy+"' mm='"+mm+"' onclick='backmm(this);'>\<\< </a>";
+  out += "<a href='javascript:void(0)' id='back' yy='"+yy+"' mm='"+mm+"'>\<\< </a>";
   // 翌月へ移動リンク
-  out += "<a href='javascript:void(0)' yy='"+yy+"' mm='"+mm+"' onclick='nextmm(this);'>\>\></a>";
+  out += "<a href='javascript:void(0)' id='next' yy='"+yy+"' mm='"+mm+"'>\>\></a>";
   out += yy+'年'+mm+'月';
   out += "</caption>";
 
@@ -85,30 +93,53 @@ function setCalendar(yy, mm) {
   // ここからさきほど作った配列daysの中身を展開していく
 
   // 行数を計算する
-  var nowYear = new Date().getFullYear();
-  var nowMonth = new Date().getMonth()+1;
-  var today = new Date().getDate();
   var row = days.length/7;
   // 行数分だけ回す
   for (var i=1; i<=row; i++) {
     out += "<tr>";
-    // うまく説明できないが行の変動に対応できるように何とかして回す
     // 土日と今日の日付にはクラスを付け、cssで色をつける
     for (var j=7*i-6; j<=7*i; j++) {
       if((j-1)%7==0){
-        out += "<td class='tdlink sun' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
+        out += "<td class='tdlink sun' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"'>"+days[j-1]+"</td>";
       }else if(j%7==0){
-        out += "<td class='tdlink sat' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
+        out += "<td class='tdlink sat' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"'>"+days[j-1]+"</td>";
       }else
         // あとでいろいろいじれるように属性やイベントを混ぜておく
-        out += "<td class='tdlink' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"' onclick='show(this);return false;'>"+days[j-1]+"</td>";
+        out += "<td class='tdlink' row='"+i+"' yy='"+yy+"' mm='"+mm+"' dd='"+days[j-1]+"'>"+days[j-1]+"</td>";
     }
     out += "</tr>";
   }
   out += "</table>";
 
-  // 最後にhtmlへどかっと渡す
+  // 最後にhtmlへ渡す
   document.getElementById("result").innerHTML = out;
+
+  //今月へ移動イベントの登録
+  var nowmonth = document.getElementById('nowmonth');
+  nowmonth.addEventListener('click',function(){
+    setCalendar();
+  },false);
+
+  //前月へ移動イベントの登録
+  var back = document.getElementById('back');
+  back.addEventListener('click',function(){
+    backmm(this);
+  },false);
+
+  //翌月へ移動イベントの登録
+  var next = document.getElementById('next');
+  next.addEventListener('click',function(){
+    nextmm(this);
+  },false);
+
+  //日付クリックによるアラームイベントの登録
+  var arr = document.getElementsByClassName('tdlink');
+  for (var i = 0, len = arr.length; i < len; i++){
+    arr.item(i).addEventListener('click',function(){
+      show(this);
+    },false);
+  }
+
 }
 
 // 前月へ移動（年度をまたぐときはyyを調整する必要がある点に留意）
@@ -129,7 +160,7 @@ function nextmm(e) {
   var yy = e.getAttribute('yy');
   var mm = e.getAttribute('mm');
   if (mm != 12) {
-    mm = parseInt(mm) + 1; // mm-(-1)でも同じだがparseIntを使ってみた
+    mm = parseInt(mm) + 1;
   } else if (mm == 12) {
     mm = 1;
     yy = parseInt(yy) + 1;
@@ -137,7 +168,7 @@ function nextmm(e) {
   setCalendar(yy, mm);
 }
 
-// 日付をクリックしたときに日付をアラートさせる（年と月の拾い方、年またぎに注意）
+// 日付をクリックしたときのアラートイベント
 function show(e) {
   var row = e.getAttribute('row');
   var yy = e.getAttribute('yy');
@@ -161,48 +192,62 @@ function show(e) {
       mm = 1;
     }
   }
-  // とりあえず叫ぶ
   alert(yy+'/'+mm+'/'+dd);
 
-  // スケジューラー
-  function setScheduler(yy,mm,dd){
-    // タイムスケジュールのヘッダー設定
-    var time = [];
-    var dat = new Date(1970,0,1,7,0);
-    for (i=0; i<16; i++){
-      dat.setHours(dat.getHours()+1);
-      time[i] = dat.toLocaleTimeString();
-    }
-
-    // DOM生成
-    var scj = "<table class='table table-bordered'>";
-
-    scj += "<caption>";
-    scj += yy+'年'+mm+'月'+dd+'日';
-    scj += "</caption>";
-
-    scj += "<tr class'scheduleHd'>";
-    for (var i in time){
-      scj += "<td>"+time[i]+"</td>";
-    }
-
-    scj += "</tr>";
-    scj += "<tr>";
-    for (var i in time){
-      scj += "<td class='tdlink' yy='"+yy+"' mm='"+mm+"' dd='"+dd+"' hh='"+time[i]+"' onclick='scjshow(this);return false;'></td>";
-    }
-    scj += "</tr>";
-    scj += "</table>";
-
-    document.getElementById("scheduler").innerHTML = scj;
-
-
-  }
-
   setScheduler(yy,mm,dd);
-
 }
 
+
+// スケジューラー関数
+function setScheduler(yy,mm,dd){
+  // タイムスケジュールのヘッダー設定
+
+  if (!yy && !mm && !dd) {
+    var yy = new Date().getFullYear();
+    var mm = new Date().getMonth();
+    mm = mm + 1;
+    var dd = new Date().getDate();
+  }
+  var time = [];
+  var dat = new Date(1970,0,1,7,0);
+  for (i=0; i<16; i++){
+    dat.setHours(dat.getHours()+1);
+    time[i] = dat.toLocaleTimeString();
+  }
+
+  // DOM生成
+  var scj = "<table class='table table-bordered'>";
+
+  scj += "<caption>";
+  scj += yy+'年'+mm+'月'+dd+'日';
+  scj += "</caption>";
+
+  scj += "<tr class'scheduleHd'>";
+  for (var i in time){
+    scj += "<td>"+time[i]+"</td>";
+  }
+
+  scj += "</tr>";
+  scj += "<tr>";
+  for (var i in time){
+    scj += "<td class='sclink' yy='"+yy+"' mm='"+mm+"' dd='"+dd+"' hh='"+time[i]+"'></td>";
+  }
+  scj += "</tr>";
+  scj += "</table>";
+
+  document.getElementById("scheduler").innerHTML = scj;
+
+  //時間セルをクリックしたときのイベント登録
+  var ele = document.getElementsByClassName('sclink');
+  for (var i = 0, len = ele.length; i < len; i++){
+    ele.item(i).addEventListener('click',function(){
+      scjshow(this);
+    },false);
+  }
+}
+
+
+//時間セルクリック時のアラートイベント
 function scjshow(e){
   var yy = e.getAttribute('yy');
   var mm = e.getAttribute('mm');
@@ -211,3 +256,4 @@ function scjshow(e){
 
   alert(yy+'/'+mm+'/'+dd+'/'+hh);
 }
+
