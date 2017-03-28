@@ -209,76 +209,6 @@
 
 
 
-
-
-  // setScheduler関数の定義(スケジューラーの生成)
-  function setScheduler(yy,mm,dd){
-    // タイムスケジュールのヘッダー設定
-
-    if (!yy && !mm && !dd) {
-      var yy = new Date().getFullYear();
-      var mm = new Date().getMonth();
-      mm = mm + 1;
-      var dd = new Date().getDate();
-    }
-    var time = [];
-    var dat = new Date(1970,0,1,7,0);
-    for (i=0; i<16; i++){
-      dat.setHours(dat.getHours()+1);
-      time[i] = dat.toLocaleTimeString();
-    }
-
-    // DOM生成
-    var scj = "<div class='table-responsive'>"
-      scj += "<table class='table table-bordered'>";
-    scj += "<caption>";
-    scj += yy+'年'+mm+'月'+dd+'日';
-    scj += "</caption>";
-
-    scj += "<tr class'scheduleHd'>";
-    for (var i in time){
-      scj += "<td>"+time[i]+"</td>";
-    }
-
-    scj += "</tr>";
-    scj += "<tr>";
-    for (var i in time){
-      scj += "<td class='sclink' yy='"+yy+"' mm='"+mm+"' dd='"+dd+"' hh='"+time[i]+"'></td>";
-    }
-    scj += "</tr>";
-    scj += "</table>";
-
-    document.getElementById("scheduler").innerHTML = scj;
-
-    //時間セルをクリックしたときのイベント登録
-    var ele = document.getElementsByClassName('sclink');
-    for (var i = 0, len = ele.length; i < len; i++){
-      ele.item(i).addEventListener('click',function(){
-        scjshow(this);
-      },false);
-    }
-  }
-  //ここまでがsetScheduler関数の定義
-
-
-
-
-
-  //scjshow関数の定義(時間セルクリック時のアラートイベント)
-  function scjshow(e){
-    var yy = e.getAttribute('yy');
-    var mm = e.getAttribute('mm');
-    var dd = e.getAttribute('dd');
-    var hh = e.getAttribute('hh');
-
-    alert(yy+'/'+mm+'/'+dd+'/'+hh);
-  }
-  //ここまでがscjshow関数の定義
-
-
-
-
-
   //ここまでが関数の定義
 
 
@@ -291,11 +221,6 @@
   //setCalendar関数を登録
   document.addEventListener('DOMContentLoaded',function(eve){
     setCalendar();
-  },false);
-
-  //setScheduler関数を登録
-  document.addEventListener('DOMContentLoaded',function(eve){
-    setScheduler();
   },false);
 
 
